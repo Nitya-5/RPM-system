@@ -1,0 +1,60 @@
+{% extends 'dashboard_base.html' %} {% block content %}
+<div style="padding: 20px 0 0 20px">
+  <h1 class="mt-4">Upload a Research Paper</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <form>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Title of the Paper</label>
+        <input
+          name="title"
+          type="text"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="title"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Description</label>
+        <textarea
+          name="description"
+          class="form-control"
+          id="exampleFormControlTextarea1"
+          rows="3"
+          required
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Author of the Paper</label>
+        <input
+          name="author"
+          type="text"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="author"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="inputState">By :</label>
+        <select id="inputState" class="form-control" name="by">
+          <option>Student</option>
+          <option>Faculty</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlFile1">Upload the file : </label>
+        <input
+          type="file"
+          name="file"
+          class="form-control-file"
+          id="exampleFormControlFile1"
+          required
+        />
+      </div>
+      <button type="submit">Upload</button>
+    </form>
+  </form>
+</div>
+{% endblock %}

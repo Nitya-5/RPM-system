@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+*{
+    box-sizing: border-box;
+}
+body{
+    color: black;
+}
+#sidebar{
+    padding: 10px;
+    margin: 0;
+    float: left;
+}
+#products{
+    width: 80%;
+    padding: 10px;
+    margin: 0;
+    float: right;
+}
+ul{
+    list-style: none;
+    padding: 5px;
+}
+li a{
+    color: darkgray;
+    text-decoration: none;
+}
+li a:hover{
+    text-decoration: none;
+    color: darksalmon;
+}
+.fa-circle{
+    font-size: 20px;
+}
+#red{
+    color: #e94545d7;
+}
+#teal{
+    color: rgb(69, 129, 129);
+}
+#blue{
+    color: #0000ff;
+}
+.card-img-top{
+    width: 250px;
+    height: 210px;
+}
+.card-body p{
+    margin: 2px;
+}
+.card-body{
+    padding: 0;
+    padding-left: 2px;
+}
+.filter{
+    display: none;
+    padding: 0;
+    margin: 0;
+}
+section,.sidebar{
+    background-color: #281e5d;
+    color: #ffffff;
+}
+nav{
+    background-color: #1338be;
+    color: #ffffff;
+}
+.content{
+    padding-left: 0;
+}
+.intro{
+    text-align: center;
+}
+@media(min-width:991px){
+    .navbar-nav{
+        margin-left: 35%;
+    }
+    .nav-item{
+        padding-left: 20px;
+    }
+    .card-img-top{
+        width: 188px;
+        height: 210px;
+    }
+    #mobile-filter{
+        display: none;
+    }
+}
+@media(min-width:768px) and (max-width:991px){
+    .navbar-nav{
+        margin-left: 20%;
+    }
+    .nav-item{
+        padding-left: 10px;
+    }
+    .card-img-top{
+        width: 230px;
+        height: 210px;
+    }
+    #mobile-filter{
+        display: none;
+    }
+}
+@media(min-width:568px) and (max-width:767px){
+    .navbar-nav{
+        margin-left: 20%;
+    }
+    .nav-item{
+        padding-left: 10px;
+    }
+    .card-img-top{
+        width: 203px;
+        height: 210px;
+    }
+    .fa-circle{
+        font-size: 15px;
+    }
+    #mobile-filter{
+        display: none;
+    }
+}
+@media(max-width:567px){
+    .navbar-nav{
+        margin-left: 0%;
+    }
+    .nav-item{
+        padding-left: 10px;
+    }
+    #sidebar{
+        width: 100%;
+        padding: 10px;
+        margin: 0;
+        float: left;
+    }
+    #products{
+        width: 100%;
+        padding: 5px;
+        margin: 0;
+        float: right;
+    }
+    .card-img-top{
+        width: 230px;
+        height: 210px;
+    }
+    .list-group-item{
+        padding: 3px;
+    }
+    .offset-1{
+        margin-left: 8%;
+    }
+    .filter{
+        display: block;
+        margin-left: 70%;
+        margin-top: 2%;
+    }
+    #sidebar{
+        display: none;
+    }
+    #mobile-filter{
+        padding: 10px;
+    }
+}
+#navBarSearchForm input[type=text]{width:10px !important;}
+</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm navbar-dark">
+    <a class="navbar-brand ml-2 font-weight-bold" href="#"><font color="white"><b>RPM SYSTEM</b></font></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor" aria-controls="navbarColor" aria-expanded="false" aria-label="Toggle navigation"> 
+        <span class="navbar-toggler-icon"></span> 
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}"><font color="white">Home</a></font> </li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'upload_file' %}"><font color="white">Add Paper</a></font>  </li>                
+            <li class="nav-item "><a class="nav-link" href="{% url 'dashboard_show' %}"><font color="white">View Papers</a></font>  </li>
+	        <li class="nav-item "><a class="nav-link" href="{% url 'home' %}"><font color="white">Logout</a></font>  </li>
+        </ul>        
+    </div>
+    </div>    
+</nav>
+<div class="filter">
+    <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#mobile-filter" aria-expanded="false" aria-controls="mobile-filter">Filters<span class="fa fa-filter pl-1"></span></button>
+</div>
+<div class="row">
+    <div class="col-md-2 col-lg-2 sidebar">
+<section id="sidebar">
+    <div>
+        <h6 class="p-1 border-bottom">Filter By</h6> </div>
+    <div>
+        <h6>Type</h6>
+        <form class="ml-md-2">
+            <div class="form-inline border rounded p-sm-2 my-2">
+                <input type="checkbox" name="type" id="topic">
+                <label for="boring" class="pl-1 pt-sm-0 pt-1">Search by Topic</label>
+            </div>
+            <div class="form-inline border rounded p-sm-2 my-2">
+                <input type="checkbox" name="type" id="faculty">
+                <label for="ugly" class="pl-1 pt-sm-0 pt-1">Search by Faculty</label>
+            </div>
+            <div class="form-inline border rounded p-md-2 p-sm-1">
+                <input type="checkbox" name="type" id="student">
+                <label for="notugly" class="pl-1 pt-sm-0 pt-1">Search by Student</label>
+            </div>
+        </form>
+    </div><br/>
+   	 <div class="main-search-input-wrap">
+    <div class="main-search-input fl-wrap">
+        <div class="main-search-input-item">
+            <input type="text"  value="" placeholder="Search Docs" id="navBarSearchForm">
+        </div><br/>
+        <button class="main-search-button"><center>Search</center></button>
+    </div>
+</div>
+</section>
+</div>
+<div class="col-md-10 col-lg-10 content">
+  {% block content %}
+  <div class="intro">
+  <div class="jumbotron">
+    <h1 class="display-4">Welcome to RPM System Dashboard</h1>
+    <p class="lead">You can make any type of changes you want.<br/>Upload new papers?<br/>Done.<br/>Edit already present papers?<br/>Done.<br/>Need to delete a paper?<br/>Done.</p>
+  </div>
+  {% endblock %}
+</div>
+</div>
+</body>
+</section>
+</body>
+</html>

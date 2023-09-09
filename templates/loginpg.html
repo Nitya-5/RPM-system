@@ -1,0 +1,182 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Login Page</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .login-container {
+      max-width: 400px;
+      margin: 0 auto;
+      margin-top: 100px;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-header {
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .form-control {
+      border-color: #007bff;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+
+    .btn-secondary {
+      background-color: #28a745;
+      border-color: #28a745;
+    }
+
+    .btn-secondary:hover {
+      background-color: #1c7430;
+      border-color: #1c7430;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container d-flex flex-row">
+    <div class="container">
+      <div class="login-container bg-white p-4">
+        <h2 class="login-header">For Faculty</h2>
+        <h2 class="login-header">Login</h2>
+        <form id="loginForm1">
+          <div class="form-group">
+            <label for="username">Email</label>
+            <input type="email" class="form-control" id="username1" placeholder="Enter your email" />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password1" class="form-control" id="password" placeholder="Enter your password" />
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Login</button>
+          <button type="button" class="btn btn-secondary btn-block">
+            Sign Up
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="container">
+      <div class="login-container bg-white p-4">
+        <h2 class="login-header">For Student</h2>
+        <h2 class="login-header">Login</h2>
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="username">Email</label>
+            <input type="email" class="form-control" id="username" placeholder="Enter your email" />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Enter your password" />
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Login</button>
+          <button type="button" class="btn btn-secondary btn-block">
+            Sign Up
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script>
+
+
+    document
+      .getElementById("loginForm1")
+      .addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent form submission and handle validation manually
+
+        // Get input values
+        const email = document.getElementById("email1").value;
+        const password = document.getElementById("password1").value;
+
+        if (email != "" && password != "") {
+          a = {}
+          a["email"] = email
+          a["password"] = password
+          fetch('http://localhost:8000/validFaculty', {
+            method: 'GET',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(a)
+          }).then(response => response.json()).then((response) => {
+            if (response['validation'] == "True") {
+              window.location = 'http://localhost/dashboard'
+            }
+            else {
+              alert("Not Valid Details")
+            }
+          })
+        }
+        else {
+          alert(
+            "Invalid"
+          );
+        }
+      });
+    document
+      .getElementById("loginForm")
+      .addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent form submission and handle validation manually
+
+
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        if (email != "" && password != "") {
+          a = {}
+          a["email"] = email
+          a["password"] = password
+          fetch('http://localhost:8000/validStudent', {
+            method: 'GET',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(a)
+          }).then(response => response.json()).then((response) => {
+            if (response['validation'] == "True") {
+              window.location = 'http://localhost/dashboard'
+            }
+            else {
+              alert("Not Valid Details")
+            }
+          })
+        }
+        else {
+          alert(
+            "Invalid"
+          );
+        }
+      });
+
+  </script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

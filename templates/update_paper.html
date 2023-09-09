@@ -1,0 +1,81 @@
+{% extends 'dashboard_base.html' %} {% block content %}
+<div style="padding: 20px 0 0 20px">
+  <h1 class="mt-4">Update the Research Paper</h1>
+  <form
+    action="/update/{{paper.id}}"
+    method="post"
+    enctype="multipart/form-data"
+  >
+    {% csrf_token %}
+    <form>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">ID :</label>
+        <input
+          name="id"
+          type="text"
+          disabled
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="id"
+          value="{{paper.id}}"
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Title of the Paper</label>
+        <input
+          name="title"
+          type="text"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="title"
+          value="{{paper.title}}"
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Description</label>
+        <textarea
+          name="description"
+          class="form-control"
+          id="exampleFormControlTextarea1"
+          rows="3"
+        >
+{{paper.description}}</textarea
+        >
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Author of the Paper</label>
+        <input
+          name="author"
+          type="text"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="author"
+          value="{{paper.author}}"
+        />
+      </div>
+      <div class="form-group">
+        <label for="inputState">By : </label>
+        <select id="inputState" class="form-control" name="by">
+          {% if paper.by == "Student" %}
+          <option selected>Student</option>
+          <option>Faculty</option>
+          {% else %}
+          <option>Student</option>
+          <option selected>Faculty</option>
+          {%endif %}
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlFile1">Upload the file : </label>
+        <input
+          type="file"
+          name="file"
+          class="form-control-file"
+          id="exampleFormControlFile1"
+        />
+      </div>
+      <button type="submit">Update</button>
+    </form>
+  </form>
+</div>
+{% endblock %}
